@@ -1,0 +1,11 @@
+input:
+["RecentCounter","ping","ping","ping","ping"]
+[[],[1],[100],[3001],[3002]]
+output:
+[null, 1, 2, 3, 3]
+
+input:
+["RecentCounter","ping","ping","ping","ping","ping"]
+[[],[642],[1849],[4921],[5936],[5957]]
+output:
+[null,1,2,1,2,3]
