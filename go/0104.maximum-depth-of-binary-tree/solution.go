@@ -14,13 +14,29 @@ import (
 
 // @lc code=begin
 
+type pair struct {
+	node  *TreeNode
+	depth int
+}
+
 func maxDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
-	leftDepth := maxDepth(root.Left)
-	rightDepth := maxDepth(root.Right)
-	return max(leftDepth, rightDepth) + 1
+	depthMax := 0
+	stack := []pair{{root, 1}}
+	for len(stack) > 0 {
+		p := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		depthMax = max(p.depth, depthMax)
+		if p.node.Right != nil {
+			stack = append(stack, pair{p.node.Right, p.depth + 1})
+		}
+		if p.node.Left != nil {
+			stack = append(stack, pair{p.node.Left, p.depth + 1})
+		}
+	}
+	return depthMax
 }
 
 // @lc code=end
