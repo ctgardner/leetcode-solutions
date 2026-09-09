@@ -15,14 +15,19 @@ import (
 // @lc code=begin
 
 func reverseList(head *ListNode) (ans *ListNode) {
-	if head == nil || head.Next == nil {
+	if head == nil {
 		return head
 	}
-	tail := head.Next
-	reversed := reverseList(tail)
-	tail.Next = head
-	head.Next = nil
-	return reversed
+	newHead := head
+	head = head.Next
+	newHead.Next = nil
+	for head != nil {
+		node := head
+		head = head.Next
+		node.Next = newHead
+		newHead = node
+	}
+	return newHead
 }
 
 // @lc code=end
