@@ -15,13 +15,14 @@ import (
 // @lc code=begin
 
 func searchBST(root *TreeNode, val int) *TreeNode {
-	if root == nil || root.Val == val {
-		return root
+	for root != nil && root.Val != val {
+		if val < root.Val {
+			root = root.Left
+		} else {
+			root = root.Right
+		}
 	}
-	if val < root.Val {
-		return searchBST(root.Left, val)
-	}
-	return searchBST(root.Right, val)
+	return root
 }
 
 // @lc code=end
