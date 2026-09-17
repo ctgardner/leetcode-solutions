@@ -15,21 +15,11 @@ import (
 // @lc code=begin
 
 func minCostClimbingStairs(cost []int) int {
-	memo := make([]int, len(cost))
-	for i := range memo {
-		memo[i] = -1
+	prev2, prev1 := cost[0], cost[1]
+	for i := 2; i < len(cost); i++ {
+		prev2, prev1 = prev1, min(prev2, prev1)+cost[i]
 	}
-	memo[0], memo[1] = cost[0], cost[1]
-
-	var minCost func(int) int
-	minCost = func(i int) int {
-		if memo[i] != -1 {
-			return memo[i]
-		}
-		memo[i] = min(minCost(i-1), minCost(i-2)) + cost[i]
-		return memo[i]
-	}
-	return min(minCost(len(cost)-1), minCost(len(cost)-2))
+	return min(prev2, prev1)
 }
 
 // @lc code=end
