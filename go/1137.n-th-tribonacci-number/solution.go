@@ -14,17 +14,17 @@ import (
 
 // @lc code=begin
 
-var memo = map[int]int{
-	0: 0,
-	1: 1,
-	2: 1,
-}
-
-func tribonacci(n int) (ans int) {
-	if _, ok := memo[n]; !ok {
-		memo[n] = tribonacci(n-1) + tribonacci(n-2) + tribonacci(n-3)
+func tribonacci(n int) int {
+	window := [3]int{0, 1, 1}
+	if n < 3 {
+		return window[n]
 	}
-	return memo[n]
+	for i := 3; i <= n; i++ {
+		sum := window[0] + window[1] + window[2]
+		window[0], window[1] = window[1], window[2]
+		window[2] = sum
+	}
+	return window[2]
 }
 
 // @lc code=end
