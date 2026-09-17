@@ -1,0 +1,14 @@
+input:
+4
+output:
+4
+
+input:
+25
+output:
+1389537
+
+input:
+35
+output:
+615693474
